@@ -1,13 +1,18 @@
-import React from "react";
+import { React, useContext } from "react";
+import { AppContext } from "../App";
+import { Link } from "react-router-dom";
 
 export default function Intro(props) {
+  const { handleStart } = useContext(AppContext);
   return (
     <div className="intro">
-      <div className="intro-heading">Quizzical</div>
-      <div className="intro-description">Some description if needed</div>
-      <button className="start" onClick={props.startQuiz}>
-        Start quiz
-      </button>
+      <div className="intro-heading">QuizApp</div>
+      <div className="intro-description">Quiz app using React</div>
+      <Link to="/quiz" style={{textDecoration: 'none'}}>
+        <div className="start" onClick={handleStart}>
+          Start quiz
+        </div>
+      </Link>
     </div>
   );
 }

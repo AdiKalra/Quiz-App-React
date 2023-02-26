@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { AppContext } from "../App";
 import Intro from "./Intro";
 import Test from "./Test";
 
 export default function Main() {
-  const [start, setStart] = useState(false);
-  function startQuiz() {
-    setStart(true);
-  }
+  const { start } = useContext(AppContext);
   return (
     <div className="main flex-col">
-      {!start && <Intro startQuiz={startQuiz} />}
+      {!start && <Intro />}
       {start && <Test />}
     </div>
   );

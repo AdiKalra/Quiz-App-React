@@ -1,42 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useContext } from "react";
 import Question from "./Question";
-import axios from "axios";
-export default function Test() {
-  let data = [];
+import Loader from "./Loader";
+import Result from "./Result";
+import { AppContext } from "../App";
 
-  const [questions, setQuestions] = useState([]);
+export default function Test() {
+  const { questions, submit, fetchData, loader, start } =
+    useContext(AppContext);
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("https://opentdb.com/api.php?amount=5");
-      const resData = await res.json();
-      data = await resData.results;
-      console.log(data);
-      setQuestions(() => {
-        return data.map((item) => {
-          return {
-            question: item.question,
-            options: [...item.incorrect_answers, item.correct_answer],
-            correct_option: item.correct_answer,
-            selected_option: "asdf",
-          };
-        });
-      });
-    }
     fetchData();
-  }, []);
-  // console.log(data)
-  //   console.log(questions);
-  //   console.log(options);
-  const questionElements = questions.map((ques) => {
+  }, [start]);
+
+  const questionElements = questions.map((ques, index) => {
     return (
       <Question
+        key={ques.questionId}
         question={ques.question}
         options={ques.options}
+        quesId={ques.questionId}
         correct_option={ques.correct_option}
         selected_option={ques.selected_option}
+        num={index + 1}
       />
     );
   });
-  return <div className="test-page-container">{questionElements}</div>;
+  return loader ? (
+    <Loader />
+  ) : (
+    <div className="test-page-container">
+      {questionElements}
+      <Result />
+    </div>
+  );
 }
