@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../App";
+import classNames from "classnames";
+import sanitizeHtml from "sanitize-html";
 
 export default function Option({
   selected,
@@ -8,29 +10,22 @@ export default function Option({
   selected_option,
   handleOptionClick,
 }) {
-  // const [buttonStyle, setButtonStyle];
-
   const { submit } = useContext(AppContext);
   return (
     <div>
       <button
-        className={`option ${selected && !submit ? "selectedButton" : ""} 
-        ${
-          submit && value === correct_option
-            ? "correct_option"
-            : selected_option !== correct_option &&
-              selected_option === value &&
-              selected && submit
-            ? "incorrect_option"
-            : ""
-        }
-        ${selected && submit ? "incorrect_option" : ""} 
-       `}
-        dangerouslySetInnerHTML={{ __html: value }}
+        className={classNames({
+          option: true,
+          "option-btn": !submit,
+          selectedButton: !submit && selected,
+          correct_option: submit && correct_option == value,
+          incorrect_option: submit && correct_option != value && selected,
+        })}
         onClick={!submit ? handleOptionClick : undefined}
-      ></button>
+      >
+        {sanitizeHtml(value)}
+      </button>
     </div>
-  ); 
+  );
 }
 
-// {}

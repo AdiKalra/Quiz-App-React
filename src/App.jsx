@@ -1,6 +1,6 @@
 import { useState, createContext, useEffect } from "react";
 import "./App.css";
-import Main from "./components/Main";
+// import Main from "./components/Main";
 import Intro from "./components/Intro";
 import Test from "./components/Test";
 import { nanoid } from "nanoid";
@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 export const AppContext = createContext();
 
 function App() {
+
   const [start, setStart] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [submit, setSubmit] = useState(false);
@@ -16,7 +17,6 @@ function App() {
 
   function handleStart() {
     setStart((prev) => !prev);
-    
   }
 
   async function fetchData() {
@@ -63,7 +63,7 @@ function App() {
           ? { ...question }
           : {
               ...question,
-              selected_option: value,
+              selected_option: question.selected_option ? null : value,
               options: question.options.map((option) => {
                 return option.optionId === optionId
                   ? { ...option, isSelected: !option.isSelected }
@@ -96,7 +96,7 @@ function App() {
     setQuestions("");
     setSubmit(false);
     setScore(0);
-    setStart(false);
+    // setStart(false);
   }
 
   const value = {

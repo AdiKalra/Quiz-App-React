@@ -95,11 +95,11 @@
   color: #7886cf;
   cursor: pointer;
 }
-.option:hover {
+.option-btn:hover {
   background-color: #4d5b9e;
   color: #fff;
 }
-.option:active {
+.option-btn:active {
     transform: scale(.9);
 }
 
@@ -108,7 +108,7 @@
   color: #fff;
 }
 
-.loader {
+.loader-1 {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -119,23 +119,31 @@
   left: 0;
   z-index: 100;
 }
-
-.loader::after {
+.loader-1::after {
   content: "";
-  width: 50px;
-  height: 50px;
-  border: 8px solid #d9dcf1;
+  width: 70px;
+  height: 70px;
+  border: 5px solid transparent;
   border-top-color: #293264;
-  border-right-color: #293264;
+  border-bottom-color: #293264;
   border-radius: 50%;
-  animation: loading ease 1.5s infinite;
+  animation: clockwise ease 3s infinite;
 }
-@keyframes loading {
+
+@keyframes clockwise {
   from {
-    transform: rotate(0turn);
+    transform: rotate(0turn, );
   }
   to {
     transform: rotate(2turn);
+  }
+}
+@keyframes anticlockwise {
+  from {
+    transform: rotate(-0turn);
+  }
+  to {
+    transform: rotate(-2turn);
   }
 }
 .result {
