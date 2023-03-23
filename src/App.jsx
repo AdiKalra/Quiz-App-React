@@ -93,10 +93,11 @@ function App() {
   }
 
   function handleResetClick() {
-    setQuestions("");
+    setQuestions([]);
     setSubmit(false);
     setScore(0);
-    // setStart(false);
+    handleStart();
+
   }
 
   const value = {
