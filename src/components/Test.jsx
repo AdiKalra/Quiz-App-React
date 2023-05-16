@@ -3,6 +3,7 @@ import Question from "./Question";
 import Loader from "./Loader";
 import Result from "./Result";
 import { AppContext } from "../App";
+import Notfound from "./quesNotFound";
 
 export default function Test() {
   const { questions, submit, fetchData, loader, start, setQuestions } =
@@ -35,6 +36,10 @@ export default function Test() {
   });
   return loader ? (
     <Loader />
+  ) : questions.length === 0 ? (
+    <div className="test-page-container">
+      <Notfound />
+    </div>
   ) : (
     <div className="test-page-container">
       {questionElements}
