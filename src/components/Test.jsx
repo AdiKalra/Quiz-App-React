@@ -5,11 +5,19 @@ import Result from "./Result";
 import { AppContext } from "../App";
 
 export default function Test() {
-  const { questions, submit, fetchData, loader, start } =
+  const { questions, submit, fetchData, loader, start, setQuestions } =
     useContext(AppContext);
 
+  // useEffect(() => {
+  //   fetchData();
+  // }, [start]);
+  
   useEffect(() => {
     fetchData();
+    // Clean up function
+    return () => {
+      setQuestions([]);
+    };
   }, [start]);
 
   const questionElements = questions.map((ques, index) => {

@@ -16,7 +16,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  /* gap: 30px; */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80vw;
 }
 .intro {
   display: flex;
@@ -132,7 +135,7 @@
 
 @keyframes clockwise {
   from {
-    transform: rotate(0turn, );
+    transform: rotate(0turn);
   }
   to {
     transform: rotate(2turn);
@@ -183,11 +186,35 @@
 .correct_option:hover{
   background-color: #94D7A2;
 }
-
 .a{
   text-decoration: none;
 }
 .incorrect_option{
   background-color: #F8BCBC;
   border-color: #F8BCBC;
+}
+.filter-list{
+  list-style-type: none;
+  padding: 0 5px 0;
+}
+.filter-list li label{
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.filter-list li{
+  margin-top: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+} 
+.filter-list li input, .filter-list li select{
+  font-size: 1rem;
+  height: 2rem;
+  width: 100%;
+  border: 1px solid #c5cff4;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.filter-list li input:active, .filter-list li select:active{
+  border: 1px solid #293264;
+  border-radius: 5px;
 }

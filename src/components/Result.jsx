@@ -4,14 +4,14 @@ import App, { AppContext } from "../App";
 import ToggleButton from "./ToggleButton";
 
 export default function Result() {
-  const { handleSubmitClick, handleResetClick, submit, score } =
+  const { handleSubmitClick, handleResetClick, submit, score, setLoader, questions } =
     useContext(AppContext);
   const navigate = useNavigate();
   return (
     <div className="result">
       {submit ? (
         <div className="result-description">
-          You scored {score}/5 correct answers
+          You scored {score}/{questions.length} correct answers
         </div>
       ) : (
         ""
@@ -23,8 +23,12 @@ export default function Result() {
           !submit
             ? handleSubmitClick
             : () => {
-                navigate("/quiz");
-                handleResetClick();
+                setLoader(true);
+                setTimeout(() => {
+                  setLoader(false);
+                  navigate("/");
+                  handleResetClick();
+                }, 500);
               }
         }
       />
