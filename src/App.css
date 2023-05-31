@@ -27,6 +27,12 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+  width: 400px;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #c5cff4;
+  background-color: #fff;
 }
 .intro-heading {
   font-size: 4rem;
